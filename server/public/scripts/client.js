@@ -6,6 +6,7 @@ function handleReady() {
     console.log('JQ Working');
     $('#add-item-button').on('click', addItem);
     $('.item-list').on('click', '#delete-button', deleteItem)
+    $('.item-list').on('click', '#complete-button', completeItem)
     getList();
 }
 
@@ -27,7 +28,7 @@ function displayItems(itemList) {
     // console.log('in display');
     for ( let item of itemList ){
         $('.item-list').append(`
-        <tr data-id=${item.id}>
+        <tr data-id=${item.id} data-status=${item.status}>
             <td>${item.item}</td>
             <td><button id="complete-button">Complete</button></td>
             <td><button id="delete-button">Delete</button></td>
@@ -66,5 +67,21 @@ function deleteItem() {
     }).catch( function(err){
         console.log(err);
     })
+}
+
+function completeItem(){
+    let id = $(this).closest('tr').data('id');
+    console.log(id);
+
+    $.ajax({
+        method: 'PUT',
+        url: `/items/${id}`
+    }).then( function(response){
+        console.log(response);
+        getList();
+    }).catch( function(err){
+        console.log(err);
+    })
+
 }
 

@@ -2,7 +2,8 @@
 
 CREATE TABLE "weekend-to-do-app" (
 "id" SERIAL PRIMARY KEY,
-"item" VARCHAR(120)
+"item" VARCHAR(120) NOT NULL,
+"status" BOOLEAN DEFAULT FALSE
 );
 
 INSERT INTO "weekend-to-do-app" ("item")

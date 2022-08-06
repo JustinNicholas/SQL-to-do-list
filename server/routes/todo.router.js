@@ -14,8 +14,11 @@ const pool = new Pool({
 
 router.get('/', (req, res) => {
     // console.log('in router items');
-    // const id = req.params.id;
-    let queryText = 'SELECT * FROM "weekend-to-do-app";';
+
+    //need order by id to keep list from shifting around when completing items.
+    let queryText = `
+    SELECT * FROM "weekend-to-do-app"
+    ORDER BY id;`;
 
     pool.query(queryText)
         .then( (result) => {
@@ -50,6 +53,22 @@ router.delete('/:id', (req, res) => {
     pool.query(queryText, [id])
         .then( (result) => {
             res.sendStatus(204);
+        }).catch( (err) => {
+            console.log(err);
+            res.sendStatus(500);
+        });
+});
+
+router.put('/:id', (req, res) => {
+    let id = req.params.id;
+    let queryText = `
+    UPDATE "weekend-to-do-app"
+    SET "status" = true
+    WHERE "id" = $1`;
+
+    pool.query(queryText, [id])
+        .then( (result) => {
+            res.sendStatus(200);
         }).catch( (err) => {
             console.log(err);
             res.sendStatus(500);
