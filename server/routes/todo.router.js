@@ -26,4 +26,19 @@ router.get('/', (req, res) => {
         })
 })
 
+router.post('/', (req, res) => {
+    let newItem = req.body;
+
+    let queryText = `INSERT INTO "weekend-to-do-app" ("item")
+    VALUES ($1);`;
+
+    pool.query(queryText, [newItem.item])
+        .then( (result) => {
+            res.sendStatus(201);
+        }).catch( (err) => {
+            console.log(err);
+            res.sendStatus(500);
+        });
+});
+
 module.exports = router;

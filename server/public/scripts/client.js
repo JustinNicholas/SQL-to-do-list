@@ -22,6 +22,7 @@ function getList(){
 }
 
 function displayItems(itemList) {
+    $('.item-list').empty();
     console.log('in display');
     for ( let item of itemList ){
         $('.item-list').append(`
@@ -36,5 +37,18 @@ function displayItems(itemList) {
 function addItem() {
     let newItem = $('#new-item').val();
 
+    $.ajax({
+        method: 'POST',
+        url: '/items',
+        data: {
+            item: newItem
+            }
+    }).then( function(response){
+        console.log(response);
+        getList();
+        $('#new-item').val('');
+    }).catch( function(err){
+        console.log(err);
+    })
 }
 
