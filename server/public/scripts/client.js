@@ -5,16 +5,17 @@ $(document).ready(handleReady);
 function handleReady() {
     console.log('JQ Working');
     $('#add-item-button').on('click', addItem);
+    $('.item-list').on('click', '#delete-button', deleteItem)
     getList();
 }
 
 function getList(){
-    console.log('in getList');
+    // console.log('in getList');
     $.ajax({
         method: 'GET',
         url: '/items'
     }).then( function(response) {
-        console.log(response);
+        // console.log(response);
         displayItems(response);
     }).catch( function(err) {
         console.log(err);
@@ -23,7 +24,7 @@ function getList(){
 
 function displayItems(itemList) {
     $('.item-list').empty();
-    console.log('in display');
+    // console.log('in display');
     for ( let item of itemList ){
         $('.item-list').append(`
         <tr data-id=${item.id}>
@@ -44,9 +45,24 @@ function addItem() {
             item: newItem
             }
     }).then( function(response){
-        console.log(response);
+        // console.log(response);
         getList();
         $('#new-item').val('');
+    }).catch( function(err){
+        console.log(err);
+    })
+}
+
+function deleteItem() {
+    let id = $(this).closest('tr').data('id');
+
+    console.log(id);
+    $.ajax({
+        method: 'DELETE',
+        url: `/items/${id}`
+    }).then( function(response) {
+        console.log(response);
+        getList();
     }).catch( function(err){
         console.log(err);
     })

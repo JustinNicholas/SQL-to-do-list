@@ -13,13 +13,13 @@ const pool = new Pool({
 });
 
 router.get('/', (req, res) => {
-    console.log('in router items');
+    // console.log('in router items');
     // const id = req.params.id;
     let queryText = 'SELECT * FROM "weekend-to-do-app";';
 
     pool.query(queryText)
         .then( (result) => {
-            console.log(result);
+            // console.log(result);
             res.send(result.rows);
         }).catch( (err) => {
             res.sendStatus(500);
@@ -35,6 +35,21 @@ router.post('/', (req, res) => {
     pool.query(queryText, [newItem.item])
         .then( (result) => {
             res.sendStatus(201);
+        }).catch( (err) => {
+            console.log(err);
+            res.sendStatus(500);
+        });
+});
+
+router.delete('/:id', (req, res) => {
+    const id = req.params.id;
+    let queryText = `
+    DELETE FROM "weekend-to-do-app"
+    WHERE "id" = $1`;
+    
+    pool.query(queryText, [id])
+        .then( (result) => {
+            res.sendStatus(204);
         }).catch( (err) => {
             console.log(err);
             res.sendStatus(500);
