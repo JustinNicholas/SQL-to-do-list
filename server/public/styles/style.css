@@ -1,3 +1,162 @@
+
+/* heading, input, and submit button */
+header {
+    text-align: center;
+}
+
+h3{
+    margin-left: 5%;
+}
+
+.box-with-shadow{
+    height: auto;
+    background-color: #fff;
+    border: 1px solid #E8E8E8;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
+}
+
+.add-item-section {
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 80%;
+    margin-left: 5%;
+    display: inline-block;
+    margin-top: 0;
+    height: 29px;
+}
+
+input::placeholder {
+    font-style: italic;
+    padding-left: 10px;
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+.purple-button {
+    background-color: #7900FF;
+    color: #fff;
+    border-radius: 5px;
+}
+
+#add-item-button {
+    display: inline-block;
+    text-align: center;
+    width: 8%;
+    margin-left: 1%;
+    height: 35px;
+    font-weight: bold;
+    padding: 0;
+}
+
+/* body and task display sections */
 body {
-    background-color: aquamarine;
+    background-color: #F7F7F7;
+    /* text-align: center; */
+    font-family: 'Poppins', sans-serif;
+}
+
+.button, p {
+    display: inline-block;
+    margin: 0;
+    border: none;
+}
+
+.button {
+    float: right;
+}
+
+.gg-trash {
+    color: black;
+}
+.delete-button {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.complete-button {
+    /* margin-top: 20px; */
+    cursor: pointer;
+    margin-right: 2px;
+}
+.display-container{
+    position: relative;
+}
+
+.to-do {
+    margin-left: 0;
+    width: 45%;
+    display: inline-block;
+    margin-top: 15px;
+    min-height: 300px;
+    position: absolute;
+    left: 4%
+}
+
+.completed-items {
+    margin-top: 15px;
+    margin-left: 0;
+    width: 45%;
+    display: inline-block;
+    min-height: 300px;
+    position: absolute;
+    left: 51%;
+}
+.list-head, .item-list, .completed-items-list {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+.list-head {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.gg-check-r {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 27px;
+}
+
+.completed-task {
+    border: 1px solid #00ffa3;
+    border-radius: 5px;
+    background-color: #00ffa232;
+    margin-bottom: 10px;
+    min-height: 35px;
+    vertical-align: middle;
+    line-height: 35px;
+}
+.task {
+    margin-left: 10px;
+    width: 60%;
+    display: inline-block;
+}
+.button-space {
+    width: 35%;
+    float: right;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 35px;
+}
+
+.to-do-tasks {
+    border: 1px solid #7900FF;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    min-height: 35px;
+    vertical-align: middle;
+    line-height: 35px;
 }

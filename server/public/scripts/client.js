@@ -5,8 +5,8 @@ $(document).ready(handleReady);
 function handleReady() {
     console.log('JQ Working');
     $('#add-item-button').on('click', addItem);
-    $('.item-list').on('click', '#delete-button', deleteItem)
-    $('.item-list').on('click', '#complete-button', completeItem)
+    $('.display').on('click', '#delete-button', deleteItem)
+    $('.display').on('click', '#complete-button', completeItem)
     getList();
 }
 
@@ -25,14 +25,28 @@ function getList(){
 
 function displayItems(itemList) {
     $('.item-list').empty();
+    $('.completed-items-list').empty();
     // console.log('in display');
     for ( let item of itemList ){
-        $('.item-list').append(`
-        <tr data-id=${item.id} data-status=${item.status}>
-            <td>${item.item}</td>
-            <td><button id="complete-button">Complete</button></td>
-            <td><button id="delete-button">Delete</button></td>
-        </tr>`)
+        console.log(item.status);
+        if (item.status === false){
+            $('.item-list').append(`
+            <div class="to-do-tasks parent-div" data-id=${item.id} data-status=${item.status}>
+                <p class="task">${item.item}</p>
+                <div class="button-space">
+                    <span class="button"><button class="complete-button purple-button" id="complete-button">Complete</button></span>
+                    <span class="button"><button class="delete-button" id="delete-button"><i class="gg-trash"></i></button></span>
+                </div>
+            </div>`)
+        } else {
+            $('.completed-items-list').append(`
+            <div class="completed-task parent-div" data-id=${item.id} data-status=${item.status}>
+                <p class="task"><i class="gg-check-r"></i> ${item.item}</p>
+                <div class="button-space">
+                    <span class="button"><button class="delete-button" id="delete-button"><i class="gg-trash"></i></button></span>
+                </div>
+            </div>`)
+        }
     }
 }
 
@@ -55,22 +69,42 @@ function addItem() {
 }
 
 function deleteItem() {
-    let id = $(this).closest('tr').data('id');
+    let id = $(this).closest('div.parent-div').data('id');
+    swal({
+        title: "You clicked delete!",
+        text: "are you sure you want to delete your task?",
+        icon: "warning",
+        buttons: true
+      })
+      .then( function(willDelete){
+        if (willDelete) {
+            console.log(id);
+            $.ajax({
+                method: 'DELETE',
+                url: `/items/${id}`
+            }).then( function(response) {
+                console.log(response);
+                getList();
+            }).catch( function(err){
+                console.log(err);
+            })
+        } else {
 
-    console.log(id);
-    $.ajax({
-        method: 'DELETE',
-        url: `/items/${id}`
-    }).then( function(response) {
-        console.log(response);
-        getList();
-    }).catch( function(err){
-        console.log(err);
-    })
+        }
+      });
+
+
 }
 
 function completeItem(){
-    let id = $(this).closest('tr').data('id');
+    swal({
+        title: "Good job!",
+        text: "You completed your task!",
+        icon: "success",
+        button: "Continue!",
+      });
+
+    let id = $(this).closest('div.parent-div').data('id');
     console.log(id);
 
     $.ajax({
