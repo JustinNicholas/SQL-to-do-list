@@ -5,7 +5,7 @@ header {
 }
 
 h3{
-    margin-left: 5%;
+    margin-left: 2%;
 }
 
 .box-with-shadow{
@@ -29,8 +29,8 @@ h3 {
 }
 
 input {
-    width: 80%;
-    margin-left: 5%;
+    width: 85%;
+    margin-left: 2%;
     display: inline-block;
     margin-top: 0;
     height: 29px;
@@ -41,12 +41,16 @@ input::placeholder {
     padding-left: 10px;
     font-size: 1rem;
     margin-top: 5px;
+    font-family: 'Poppins', sans-serif;
+    color: #b8b8b8;
+    font-weight: 100;
 }
 
 .purple-button {
     background-color: #7900FF;
     color: #fff;
     border-radius: 5px;
+    border: none;
 }
 
 #add-item-button {
@@ -61,7 +65,8 @@ input::placeholder {
 
 /* body and task display sections */
 body {
-    background-color: #F7F7F7;
+    background-color: #40018821;
+    /* background-color: #F7F7F7; */
     /* text-align: center; */
     font-family: 'Poppins', sans-serif;
 }
@@ -90,6 +95,7 @@ body {
     /* margin-top: 20px; */
     cursor: pointer;
     margin-right: 2px;
+    height: 25px;
 }
 .display-container{
     position: relative;
@@ -115,8 +121,8 @@ body {
     left: 51%;
 }
 .list-head, .item-list, .completed-items-list {
-    margin-left: 2%;
-    margin-right: 2%;
+    margin-left: 4%;
+    margin-right: 4%;
 }
 .list-head {
     padding-top: 10px;
@@ -128,6 +134,7 @@ body {
     display: inline-block;
     vertical-align: middle;
     line-height: 27px;
+    color:  #00e391;
 }
 
 .completed-task {
@@ -141,11 +148,11 @@ body {
 }
 .task {
     margin-left: 10px;
-    width: 60%;
+    width: 55%;
     display: inline-block;
 }
 .button-space {
-    width: 35%;
+    width: 37%;
     float: right;
     display: inline-block;
     vertical-align: middle;
