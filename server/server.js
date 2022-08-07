@@ -1,3 +1,4 @@
+// Here we require all the files that we need and have our computer listen on port 5000
 const express = require('express');
 const app = express();
 

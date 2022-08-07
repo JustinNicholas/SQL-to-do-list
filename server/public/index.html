@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- jQuer, Sweet Alert, and Javascript -->
     <script src="./vendors/jquery.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="./scripts/client.js"></script>
-    <!-- CSS -->
+    <!-- CSS, Fonts, and Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
@@ -24,6 +25,7 @@
     <main>
         <div class="container">
             <div class="row">
+                <!-- this is where users will add new items to their to-do list -->
                 <div class="add-item-section box-with-shadow col-md-12">
                     <h3>Add new item to your to-do list:</h3>
                     <input id="new-item" type="text" placeholder="ex: Mow the lawn" maxlength="120">
@@ -31,6 +33,7 @@
                 </div>
             </div>
                 <div class="display-container row">
+                    <!-- This is where items that are still left to-do will be displayed -->
                     <div class="display box-with-shadow to-do col-md-6">
                         <div class="list-head">
                             <p>To-Do List</p>
@@ -39,7 +42,7 @@
 
                         </div>
                     </div>
-
+                    <!-- This is where completed tasks will be displayed -->
                     <div class="display box-with-shadow completed-items col-md-6">
                         <div class="list-head">
                             <p>Completed Tasks</p>

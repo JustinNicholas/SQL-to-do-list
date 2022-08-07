@@ -1,7 +1,7 @@
 console.log('JS Working');
 
 $(document).ready(handleReady);
-
+// here are all of the click listener for the page
 function handleReady() {
     console.log('JQ Working');
     $('#add-item-button').on('click', addItem);
@@ -9,7 +9,7 @@ function handleReady() {
     $('.display').on('click', '#complete-button', completeItem)
     getList();
 }
-
+// the getList function send a get request to the server and then calls the displayItems function and uses the response as an argument.
 function getList(){
     // console.log('in getList');
     $.ajax({
@@ -22,13 +22,14 @@ function getList(){
         console.log(err);
     })
 }
-
+// the displayItems function will check if each task was completed and append it to the completed section or to-do section.
+// This also puts the id and stat in the data of the parent div.
 function displayItems(itemList) {
     $('.item-list').empty();
     $('.completed-items-list').empty();
     // console.log('in display');
     for ( let item of itemList ){
-        console.log(item.status);
+        // console.log(item.status);
         if (item.status === false){
             $('.item-list').append(`
             <div class="to-do-tasks parent-div" data-id=${item.id} data-status=${item.status}>
@@ -49,7 +50,8 @@ function displayItems(itemList) {
         }
     }
 }
-
+// the addItem function will run when a user submits a new entry. It sends the new item to the server to be stored in the database.
+//It also calls the getITems function to refresh the page.
 function addItem() {
     let newItem = $('#new-item').val();
 
@@ -67,8 +69,10 @@ function addItem() {
         console.log(err);
     })
 }
-
+// the deleteItem function sends a warning to users and does not delete items until the user clicks ok on the alert. Once they click ok, it sends a delete request
+// to the server with their id. It also calls the getITems function to refresh the page.
 function deleteItem() {
+    // this has to be outside the .then because it will be lost inside of it.
     let id = $(this).closest('div.parent-div').data('id');
     swal({
         title: "You clicked delete!",
@@ -92,10 +96,10 @@ function deleteItem() {
 
         }
       });
-
-
 }
 
+// the completedItem function sends an alert to the user that says congrats. It also sends a put request to change the status of that item to false.
+// It also calls the getITems function to refresh the page.
 function completeItem(){
     swal({
         title: "Good job!",

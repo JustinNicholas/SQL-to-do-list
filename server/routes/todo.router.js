@@ -1,3 +1,4 @@
+// here is where we require all the files we need and set up pool
 const express = require('express');
 const router = express.Router();
 
@@ -11,7 +12,7 @@ const pool = new Pool({
     max: 10,
     idleTimeoutMillis: 30000
 });
-
+// This get request will retrieve data from the SQL database and send back the rows to the client.js file
 router.get('/', (req, res) => {
     // console.log('in router items');
 
@@ -28,7 +29,7 @@ router.get('/', (req, res) => {
             res.sendStatus(500);
         })
 })
-
+// This post request will send new entries for the database 
 router.post('/', (req, res) => {
     let newItem = req.body;
 
@@ -44,6 +45,7 @@ router.post('/', (req, res) => {
         });
 });
 
+// This delete request will delete one item from the database at a time by the id of the item that was deleted
 router.delete('/:id', (req, res) => {
     const id = req.params.id;
     let queryText = `
@@ -59,6 +61,7 @@ router.delete('/:id', (req, res) => {
         });
 });
 
+// This put request will only change the status from false to true of the item with the id that was clicked on
 router.put('/:id', (req, res) => {
     let id = req.params.id;
     let queryText = `
@@ -75,5 +78,5 @@ router.put('/:id', (req, res) => {
         });
 });
 
-
+// this exports this page to be used on the server.js file
 module.exports = router;
